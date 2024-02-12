@@ -7,13 +7,17 @@ const matches = document.querySelector(".matches");
 const moves = document.querySelector(".moves");
 const newGame = document.querySelector(".btn");
 
-// Starting conditions - New Game
+// Variables
 
-let match, move;
+let match = 0;
+let move = 0;
 let limit = 0;
+let openCards = [];
+let flippedCards = [];
+
+// Functions
 
 // shuffling the cards
-
 const shuffle = function () {
   cards.forEach((card) => {
     let order = Math.floor(Math.random() * 16);
@@ -22,14 +26,29 @@ const shuffle = function () {
   });
 };
 
+// starting conditions - new game
 const init = function () {
-  metch: 0;
-  move: 0;
+  match = 0;
+  move = 0;
 
   matches.textContent = 0;
   moves.textContent = 0;
 
-  shuffle();
+  const flippedCards = document.querySelectorAll(".flipped");
+
+  flippedCards.forEach((flippedCard) => {
+    flippedCard.classList.remove("flipped");
+  });
+
+  const openCards = document.querySelectorAll(".matched");
+
+  openCards.forEach((openCard) => {
+    openCard.classList.remove("matched");
+  });
+
+  setTimeout(() => {
+    shuffle();
+  }, 500);
 };
 
 init();
@@ -38,6 +57,42 @@ init();
 
 cards.forEach((card) => {
   card.addEventListener("click", function () {
-    card.classList.add("flipped");
+    if (!card.classList.contains("flipped")) {
+      card.classList.add("flipped");
+      flippedCards.push(card);
+      console.log(flippedCards);
+
+      let cardName = card.getAttribute("data-card-name");
+      openCards.push(cardName);
+      console.log(openCards);
+
+      if (flippedCards.length === 2) {
+        if (openCards[0] === openCards[1]) {
+          match++;
+          matches.textContent = match;
+
+          flippedCards.forEach((flippedCard) => {
+            flippedCard.classList.add("matched");
+            flippedCard.classList.remove("flipped");
+          });
+        } else {
+          flippedCards.forEach((card) => {
+            setTimeout(() => {
+              card.classList.remove("flipped");
+            }, 1000);
+          });
+        }
+
+        openCards = [];
+        flippedCards = [];
+
+        move++;
+        moves.textContent = move;
+      }
+    }
   });
 });
+
+// new game button
+
+newGame.addEventListener("click", init);
