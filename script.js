@@ -58,7 +58,10 @@ init();
 
 cards.forEach((card) => {
   card.addEventListener("click", function () {
-    if (!card.classList.contains("flipped")) {
+    if (
+      !card.classList.contains("flipped") &&
+      !card.classList.contains("matched")
+    ) {
       card.classList.add("flipped");
       flippedCards.push(card);
       console.log(flippedCards);
@@ -84,9 +87,9 @@ cards.forEach((card) => {
             }
           });
         } else {
-          flippedCards.forEach((card) => {
+          flippedCards.forEach((flippedCard) => {
             setTimeout(() => {
-              card.classList.remove("flipped");
+              flippedCard.classList.remove("flipped");
             }, 1000);
           });
         }
