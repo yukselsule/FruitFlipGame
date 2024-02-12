@@ -1,0 +1,106 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.game {
+  width: 100rem;
+  margin-top: 4rem;
+  display: flex;
+
+  font-size: 2rem;
+  font-family: "Oxygen", sans-serif;
+}
+
+.game__table-matches {
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.game__table-moves {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.newgame {
+  align-self: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 1.6rem;
+  font-family: inherit;
+  font-size: 1.8rem;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cards {
+  width: 100rem;
+  padding: 6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 3rem;
+  column-gap: 2rem;
+}
+
+.card {
+  width: 19rem;
+  height: 11rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card-side {
+  width: 20rem;
+  height: 12rem;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+
+  border-radius: 5px;
+}
+
+.card-side img {
+  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.071);
+  border-radius: 5px;
+}
+
+.card-side__back {
+  transform: rotateY(-180deg);
+  overflow: hidden;
+}
+
+.card-side__front__img,
+.card-side__back__img {
+  display: inline-block;
+  width: 100%;
+}
+
+.flipped .card-side__back {
+  transform: rotateY(0);
+}
+
+.flipped .card-side__front {
+  transform: rotateY(-180deg);
+}
+
+.matched .card-side__back {
+  transform: rotateY(0);
+}
+
+.matched .card-side__front {
+  transform: rotateY(-180deg);
+}
