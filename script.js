@@ -34,14 +34,15 @@ const init = function () {
   matches.textContent = 0;
   moves.textContent = 0;
 
-  const flippedCards = document.querySelectorAll(".flipped");
+  document.querySelector(".winner").style.display = "none";
+  document.querySelector(".cards").style.display = "grid";
 
+  const flippedCards = document.querySelectorAll(".flipped");
   flippedCards.forEach((flippedCard) => {
     flippedCard.classList.remove("flipped");
   });
 
   const openCards = document.querySelectorAll(".matched");
-
   openCards.forEach((openCard) => {
     openCard.classList.remove("matched");
   });
@@ -74,6 +75,13 @@ cards.forEach((card) => {
           flippedCards.forEach((flippedCard) => {
             flippedCard.classList.add("matched");
             flippedCard.classList.remove("flipped");
+
+            if (match === 8) {
+              setTimeout(() => {
+                document.querySelector(".winner").style.display = "inherit";
+                document.querySelector(".cards").style.display = "none";
+              }, 1500);
+            }
           });
         } else {
           flippedCards.forEach((card) => {
