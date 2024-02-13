@@ -26,6 +26,14 @@ const shuffle = function () {
   });
 };
 
+// game over
+const gameOver = function () {
+  setTimeout(() => {
+    document.querySelector(".winner").style.display = "inherit";
+    document.querySelector(".cards").style.display = "none";
+  }, 1500);
+};
+
 // starting conditions - new game
 const init = function () {
   match = 0;
@@ -64,26 +72,25 @@ cards.forEach((card) => {
     ) {
       card.classList.add("flipped");
       flippedCards.push(card);
-      console.log(flippedCards);
 
       let cardName = card.getAttribute("data-card-name");
       openCards.push(cardName);
-      console.log(openCards);
 
-      if (flippedCards.length === 2) {
-        if (openCards[0] === openCards[1]) {
+      const isTwoCardsOpened = flippedCards.length === 2;
+      const isCardsMatched = openCards[0] === openCards[1];
+
+      if (isTwoCardsOpened) {
+        if (isCardsMatched) {
           match++;
           matches.textContent = match;
+          const isGameOver = match === 8;
 
           flippedCards.forEach((flippedCard) => {
             flippedCard.classList.add("matched");
             flippedCard.classList.remove("flipped");
 
-            if (match === 8) {
-              setTimeout(() => {
-                document.querySelector(".winner").style.display = "inherit";
-                document.querySelector(".cards").style.display = "none";
-              }, 1500);
+            if (isGameOver) {
+              gameOver();
             }
           });
         } else {
