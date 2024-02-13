@@ -34,6 +34,33 @@ const gameOver = function () {
   }, 1500);
 };
 
+// cards matched
+
+const cardsMatched = function (flippedCards) {
+  match++;
+  matches.textContent = match;
+  const isGameOver = match === 8;
+
+  flippedCards.forEach((flippedCard) => {
+    flippedCard.classList.add("matched");
+    flippedCard.classList.remove("flipped");
+
+    if (isGameOver) {
+      gameOver();
+    }
+  });
+};
+
+// cards not matched
+
+const closeCards = function (flippedCards) {
+  flippedCards.forEach((flippedCard) => {
+    setTimeout(() => {
+      flippedCard.classList.remove("flipped");
+    }, 1000);
+  });
+};
+
 // starting conditions - new game
 const init = function () {
   match = 0;
@@ -81,24 +108,9 @@ cards.forEach((card) => {
 
       if (isTwoCardsOpened) {
         if (isCardsMatched) {
-          match++;
-          matches.textContent = match;
-          const isGameOver = match === 8;
-
-          flippedCards.forEach((flippedCard) => {
-            flippedCard.classList.add("matched");
-            flippedCard.classList.remove("flipped");
-
-            if (isGameOver) {
-              gameOver();
-            }
-          });
+          cardsMatched(flippedCards);
         } else {
-          flippedCards.forEach((flippedCard) => {
-            setTimeout(() => {
-              flippedCard.classList.remove("flipped");
-            }, 1000);
-          });
+          closeCards(flippedCards);
         }
 
         openCards = [];
