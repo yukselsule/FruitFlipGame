@@ -34,6 +34,38 @@ const gameOver = function () {
   }, 1500);
 };
 
+// open card
+
+const openCard = function (card) {
+  if (
+    !card.classList.contains("flipped") &&
+    !card.classList.contains("matched")
+  ) {
+    card.classList.add("flipped");
+    flippedCards.push(card);
+
+    let cardName = card.getAttribute("data-card-name");
+    openCards.push(cardName);
+
+    const isTwoCardsOpened = flippedCards.length === 2;
+    const isCardsMatched = openCards[0] === openCards[1];
+
+    if (isTwoCardsOpened) {
+      if (isCardsMatched) {
+        cardsMatched(flippedCards);
+      } else {
+        closeCards(flippedCards);
+      }
+
+      openCards = [];
+      flippedCards = [];
+
+      move++;
+      moves.textContent = move;
+    }
+  }
+};
+
 // cards matched
 
 const cardsMatched = function (flippedCards) {
@@ -93,33 +125,7 @@ init();
 
 cards.forEach((card) => {
   card.addEventListener("click", function () {
-    if (
-      !card.classList.contains("flipped") &&
-      !card.classList.contains("matched")
-    ) {
-      card.classList.add("flipped");
-      flippedCards.push(card);
-
-      let cardName = card.getAttribute("data-card-name");
-      openCards.push(cardName);
-
-      const isTwoCardsOpened = flippedCards.length === 2;
-      const isCardsMatched = openCards[0] === openCards[1];
-
-      if (isTwoCardsOpened) {
-        if (isCardsMatched) {
-          cardsMatched(flippedCards);
-        } else {
-          closeCards(flippedCards);
-        }
-
-        openCards = [];
-        flippedCards = [];
-
-        move++;
-        moves.textContent = move;
-      }
-    }
+    openCard(card);
   });
 });
 
