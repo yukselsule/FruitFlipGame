@@ -25,8 +25,10 @@ const init = function () {
   matches.textContent = 0;
   moves.textContent = 10;
 
-  document.querySelector(".loser").style.display = "none";
-  document.querySelector(".winner").style.display = "none";
+  document.querySelector(".loser").style.opacity = "0";
+  document.querySelector(".loser").style.visibility = "hidden";
+  document.querySelector(".winner").style.opacity = "0";
+  document.querySelector(".winner").style.visibility = "hidden";
   document.querySelector(".cards").style.display = "grid";
 
   const flippedCards = document.querySelectorAll(".flipped");
@@ -56,14 +58,16 @@ const shuffle = function () {
 // game over
 const gameWon = function () {
   setTimeout(() => {
-    document.querySelector(".winner").style.display = "inherit";
+    document.querySelector(".winner").style.opacity = "1";
+    document.querySelector(".winner").style.visibility = "visible";
     document.querySelector(".cards").style.display = "none";
   }, 1500);
 };
 
 const gameLost = function () {
   setTimeout(() => {
-    document.querySelector(".loser").style.display = "inherit";
+    document.querySelector(".loser").style.opacity = "1";
+    document.querySelector(".loser").style.visibility = "visible";
     document.querySelector(".cards").style.display = "none";
   }, 1500);
 };
