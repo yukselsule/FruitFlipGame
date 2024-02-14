@@ -25,6 +25,7 @@ const init = function () {
   matches.textContent = 0;
   moves.textContent = 10;
 
+  document.querySelector(".loser").style.display = "none";
   document.querySelector(".winner").style.display = "none";
   document.querySelector(".cards").style.display = "grid";
 
@@ -138,5 +139,4 @@ const openCard = function (card) {
 };
 
 // new game button
-
 newGame.addEventListener("click", init);
