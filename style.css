@@ -99,7 +99,7 @@ body {
 }
 
 .card-side img {
-  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.071);
+  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.07);
   border-radius: 5px;
 
   width: 100%;
