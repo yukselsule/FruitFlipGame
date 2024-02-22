@@ -13,8 +13,8 @@ body {
   height: 95vh;
   background-image: linear-gradient(
     to right bottom,
-    rgba(144, 190, 84, 0.396),
-    rgba(124, 166, 75, 0.596)
+    rgba(144, 190, 84, 0.4),
+    rgba(124, 166, 75, 0.6)
   );
   color: #085627;
 }
