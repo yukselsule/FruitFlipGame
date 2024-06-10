@@ -8,7 +8,6 @@ const moves = document.querySelector(".moves");
 const newGame = document.querySelector(".btn");
 
 // Variables
-
 let match = 0;
 let move = 10;
 let limit = 0;
@@ -16,8 +15,6 @@ let openCards = [];
 let flippedCards = [];
 
 // Functions
-
-// starting conditions - new game
 const init = function () {
   match = 0;
   move = 10;
@@ -46,7 +43,6 @@ const init = function () {
   }, 500);
 };
 
-// shuffling the cards
 const shuffle = function () {
   cards.forEach((card) => {
     let order = Math.floor(Math.random() * 16);
@@ -55,7 +51,6 @@ const shuffle = function () {
   });
 };
 
-// game over
 const gameWon = function () {
   setTimeout(() => {
     document.querySelector(".winner").style.opacity = "1";
@@ -72,7 +67,6 @@ const gameLost = function () {
   }, 1500);
 };
 
-// cards matched
 const cardsMatched = function (flippedCards) {
   match++;
   matches.textContent = match;
@@ -88,7 +82,6 @@ const cardsMatched = function (flippedCards) {
   });
 };
 
-// cards not matched
 const closeCards = function (flippedCards) {
   flippedCards.forEach((flippedCard) => {
     setTimeout(() => {
@@ -106,15 +99,12 @@ const closeCards = function (flippedCards) {
 
 init();
 
-// Flipping card
-
 cards.forEach((card) => {
   card.addEventListener("click", function () {
     openCard(card);
   });
 });
 
-// open card
 const openCard = function (card) {
   if (
     !card.classList.contains("flipped") &&
@@ -142,5 +132,4 @@ const openCard = function (card) {
   }
 };
 
-// new game button
 newGame.addEventListener("click", init);
